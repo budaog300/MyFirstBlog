@@ -1,0 +1,111 @@
+body {
+    background-color: #f2f2f2;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    font-size: 20px;
+    padding: 5px 10px;
+    margin-bottom: auto;
+    flex: 1;
+}
+
+ul, li, a {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+header {
+    background-color: #3eac58;
+    padding: 10px 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 120px;
+}
+
+/* ----------------------TOPPANEL---------------------- */
+.menu {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    background-color: #036817;
+    padding: 0;
+    margin: 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 80px;
+}
+
+.menu li {
+    margin: 0 15px;
+    color: white;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: block;
+    cursor: pointer;
+}
+
+.menu a:hover {
+    color: #ffc107;
+    cursor: pointer;
+}
+
+.userInfo{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    color: white;
+    right: 0;
+}
+
+.spacer {
+    flex-grow: 1;  /* Расстояние между юзер панелью и остальной частью */
+}
+
+.img-article-right{
+    width: 50px;
+    height: 50px;
+}
+/* ---------------------------------------------------------------------- */
+
+/* ----------------------FOOTER------------------------ */
+footer {
+    padding: 20px;
+    text-align: center;
+    background: #ddd;
+    margin-top: 20px;
+}
+/* ---------------------------------------------------- */
+
+/* ----------------------Кнопка скролла по странице---------------------- */
+#myBtn {
+    display: none;
+    position: fixed;
+    bottom: 20px;
+    right: 30px;
+    z-index: 99;
+    border: none;
+    outline: none;
+    background-color: red;
+    color: white;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+#myBtn:hover {
+    background-color: #555;
+}
+/* ---------------------------------------------------------------------- */

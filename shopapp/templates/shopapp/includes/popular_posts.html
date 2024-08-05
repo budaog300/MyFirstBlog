@@ -1,0 +1,34 @@
+<div class="card">
+    <div class="user-header">
+        <h3>ПОПУЛЯРНОЕ СЕЙЧАС</h3>
+    </div>
+    <ul class="popular-posts">
+    {% for post in popular_posts %}
+        <li>
+            <a href="{% url 'post' post.article_id %}"><span>{{ post.article__title }}</span></a> - ({{ post.total_views }})
+        </li>
+    {% empty %}
+        <li>Популярных статей не найдено.</li>
+    {% endfor %}
+    </ul>
+</div>
+<div class="card">
+    <div class="user-header">
+        <h3>ЧИТАТЕЛИ БЛОГА ({{ users.count }})</h3>
+        <h6><a href="{% url 'users_view' %}"><span>Показать еще</span></a></h6>
+    </div>
+    <div class="user-grid">
+    {% for user in users|slice:":9" %}
+        {% if not user.is_superuser and user.photo %}
+          <div class="user-grid-item">
+              <a href="{% url 'profile_pk' user.username %}">
+                  <img src="{{user.photo.url}}" alt="User Photo" style="height: 50px; width: 50px;">
+              </a>
+          </div>
+        {% endif %}
+    {% empty %}
+        <li>Пользователей не найдено.</li>
+    {% endfor %}
+    </div>
+</div>
+

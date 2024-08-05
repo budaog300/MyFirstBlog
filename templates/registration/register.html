@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Регистрация
+{% endblock %}
+
+{% block extra_css %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shopapp/css/registr.css' %}">
+{% endblock %}
+
+{% block content %}
+<body>
+    <div class="container">
+        <h2>Регистрация</h2>
+        <form method="post" id="contactForm">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
+                <div class="input-container">
+                     <i class="fa fa-user icon"></i>
+                     <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" placeholder="Имя пользователя" required>
+                </div>
+                {% for error in form.username.errors %}
+                    <small class="error-message">{{error}}</small>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">Электронная почта</label>
+                <div class="input-container">
+                     <i class="fa fa-envelope icon"></i>
+                     <input type="email" id="{{ form.email.id_for_label }}" name="{{ form.email.name }}" placeholder="Электронная почта" required>
+                </div>
+                {% for error in form.email.errors %}
+                    <small class="error-message">{{error}}</small>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">Пароль</label>
+                <div class="input-container">
+                     <i class="fa fa-key icon"></i>
+                     <input type="password" id="{{ form.password1.id_for_label }}" name="{{ form.password1.name }}" placeholder="Пароль" required>
+                </div>
+                {% for error in form.password1.errors %}
+                    <small class="error-message">{{error}}</small>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">Подтверждение пароля</label>
+                <div class="input-container">
+                     <i class="fa fa-key icon"></i>
+                     <input type="password" id="{{ form.password2.id_for_label }}" name="{{ form.password2.name }}" placeholder="Подтверждение пароля"  required>
+                </div>
+                {% for error in form.password2.errors %}
+                    <p class="error-message">{{error}}</p>
+                {% endfor %}
+            </div>
+            <div class="form-group">
+                {{ form.captcha }}
+                {% for error in form.captcha.errors %}
+                    <p class="error-message">{{ error }}</p>
+                {% endfor %}
+            </div>
+            <small class="form-group">
+            <p>Создавая учетную запись, вы соглашаетесь с нашим
+                <a href="#" style="color:dodgerblue">Условия и конфиденциальность</a>.
+            </p>
+             </small>
+            <div class="form-group">
+                <button type="submit">Зарегистрироваться</button>
+            </div>
+            <small class="form-group">
+                <p>Уже зарегистрированы? <a href="{% url 'login' %}">Войти</a></p>
+            </small>
+        </form>
+    </div>
+</body>
+{% endblock %}

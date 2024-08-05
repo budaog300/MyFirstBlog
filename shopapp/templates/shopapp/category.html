@@ -1,0 +1,36 @@
+{% extends 'shopapp/article.html' %}
+
+{% block title %}
+    Категория {{ cat.name }}
+{% endblock %}
+
+{% block right_content %}
+    <div class="header-article">
+        <h3>ОТОБРАЖЕНИЕ КАТЕГОРИИ {{ cat.name|upper }}</h3>
+    </div>
+    <div class="posts">
+        {% if query %}
+            {% include 'shopapp/includes/search_results.html' %}
+        {% else %}
+        <ul>
+            {% for p in page_obj %}
+            {% if p.is_published %}
+                <li class="post" onclick="location.href='{{ p.get_absolute_url }}?page={{ page_number }}'">
+                    {% if p.photo %}
+                        <p><img class="img-article-left" src="{{p.photo.url}}" alt=""></p>
+                    {% endif %}
+                    <div class="post-info">
+                        <h3>{{p.title}}</h3>
+                        <h5>Дата публикации: {{p.time_create}}</h5>
+                        <div>{{ p.preview }}</div>
+                    </div>
+                </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+    <!-- Пагинация -->
+    {% include 'shopapp/includes/paginator.html' %}
+{% endblock %}
+

@@ -1,0 +1,8 @@
+DROP DATABASE myblog_bd;
+CREATE DATABASE myblog_bd CHARACTER SET UTF8;
+GRANT ALL PRIVILEGES ON myblog_bd.* TO 'root'@'localhost';
+FLUSH PRIVILEGES;
+
+python -Xutf8 manage.py dumpdata --database=default -o data_mysql.json
+python manage.py migrate
+python manage.py loaddata data_mysql.json

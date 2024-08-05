@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <title>{% block title %} {% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shopapp/css/styles.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    {% block extra_css %} {% endblock %}
+</head>
+<body>
+{% block toppanel %}
+    <!--<ul class="menu">
+    {% for m in menu %}
+        <li><a href="{% url m.url_name %}">{{ m.name }}</a></li>
+    {% endfor %}
+    </ul>-->
+    <ul class="menu">
+        <!-- Возврат на предыдущую страницу
+        <p><a href="{{request.META.HTTP_REFERER|escape}}">Back</a></p>-->
+
+<!--        {% if request.resolver_match.url_name != 'index' %}-->
+<!--            <li><a href="{{ request.META.HTTP_REFERER|escape }}">&lt;</a></li>-->
+<!--        {% endif %}-->
+        <li><a href="{% url 'index' %}"><i class="fa fa-home"></i> Главная</a></li>
+        <li><a href="{% url 'article' %}"><i class="fa fa-globe"></i> Статьи</a></li>
+        <li><a href="{% url 'about' %}"><i class="fa fa-fw fa-wrench"></i> Об авторе</a></li>
+        <li><a href="{% url 'contacts' %}"><i class="fa fa-fw fa-envelope"></i> Связь с нами</a></li>
+<!--        <li><a href="{% url 'test' %}">Тестовая страница</a></li>-->
+
+        <div class="spacer"></div>
+        <li>Текущее время: <span id="current-time"></span></li>
+        {% if request.user.is_superuser %}
+            <li><a href="{% url 'admin:index' %}">Админ панель</a></li>
+        {% endif %}
+        <div class="userInfo">
+        {% if request.user.is_authenticated %}
+            <li>
+                <a href="{% url 'profile_pk' request.user.username %}">
+                    <small><i class="fa fa-fw fa-user"></i> {{ request.user.username }}</small>
+                </a>
+            </li>
+            <li><a href="{% url 'logout' %}?next={{ request.path }}">Выйти</a></li>
+            {% else %}
+                <li class="li1"><a href="{% url 'login' %}?next={{ request.path }}">Войти</a></li>
+            {% endif %}
+        </div>
+    </ul>
+{% endblock %}
+
+{% block header %}
+{% endblock %}
+
+<div class="content">
+    {% block content %}
+    {% endblock %}
+</div>
+
+{% block footer %}
+    <footer>
+        <p>Все права защищены</p>
+    </footer>
+{% endblock %}
+
+<button onclick="topFunction()" id="myBtn" title="Перейти к началу">&#8679; Вверх</button>
+<!-- ---------------- -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="{% static 'shopapp/js/base_script.js' %}"></script>
+{% block extra_js %} {% endblock %}
+</body>
+</html>

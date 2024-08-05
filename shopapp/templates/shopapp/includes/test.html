@@ -1,0 +1,13 @@
+ <!-- Если есть ответы на этот ответ -->
+{% if reply.children.all %}
+    <ul class="list-group replies-list">
+        {% for sub_reply in reply.children.all %}
+            <li class="list-group-item reply-item">
+                <p><strong>{{ sub_reply.user.username }}</strong> ответил {{ reply.user.username }}'у:</p>
+                <p><small class="text-muted">{{ sub_reply.time_create }}</small></p>
+                <p>{{ sub_reply.message|linebreaks }}</p>
+                <!-- Здесь можно добавить дополнительные уровни ответа при необходимости -->
+            </li>
+        {% endfor %}
+    </ul>
+{% endif %}

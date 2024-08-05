@@ -1,0 +1,5 @@
+<form class="example" action="{% url 'search_results' %}" method="get">
+    <input name="query" type="text" placeholder="Поиск...">
+    <input type="hidden" name="cat_id" value="{{ cat.id }}">
+    <button type="submit"><i class="fa fa-search"></i></button>
+</form>

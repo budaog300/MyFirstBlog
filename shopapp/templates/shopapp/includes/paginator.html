@@ -1,0 +1,51 @@
+<div class="paginator">
+   {% if page_obj.has_other_pages %}
+      <nav class="pagination-nav">
+          {% if page_obj.has_previous %}
+              <li class="page-num">
+                  <a href="?page={{ page_obj.previous_page_number }}">
+                      <span class="pagination-arrow pagination-arrow-left">&lt;</span>
+                  </a>
+              </li>
+          {% else %}
+              <span class="pagination-arrow pagination-arrow-left disabled">&lt;</span>
+          {% endif %}
+          {% if page_obj.number > 1 %}
+              <li class="page-num">
+                  <a href="?page=1">1</a>
+              </li>
+              {% if page_obj.number > 2 %}
+                  <li class="page-num">...</li>
+              {% endif %}
+          {% endif %}
+         <ul class="pagination-numbers">
+              {% for p in page_obj.paginator.page_range %}
+                      {% if page_obj.number == p %}
+              <li class="page-num page-num-selected">{{ p }}</li>
+                      {% elif p >= page_obj.number|add:-2 and p <= page_obj.number|add:2 and p != 1 and p != page_obj.paginator.num_pages %}
+              <li class="page-num">
+                  <a href="?page={{ p }}">{{ p }}</a>
+              </li>
+                      {% endif %}
+              {% endfor %}
+          </ul>
+          {% if page_obj.number < page_obj.paginator.num_pages %}
+              {% if page_obj.number < page_obj.paginator.num_pages|add:-1 %}
+                  <li class="page-num">...</li>
+              {% endif %}
+              <li class="page-num">
+                  <a href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+              </li>
+          {% endif %}
+          {% if page_obj.has_next %}
+              <li class="page-num">
+                  <a href="?page={{ page_obj.next_page_number }}">
+                      <span class="pagination-arrow pagination-arrow-right">&gt;</span>
+                  </a>
+              </li>
+          {% else %}
+              <span class="pagination-arrow pagination-arrow-right disabled">&gt;</span>
+          {% endif %}
+      </nav>
+   {% endif %}
+</div>

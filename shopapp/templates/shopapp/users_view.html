@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Читатели блога
+{% endblock %}
+
+{% block extra_css %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shopapp/css/users_view.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="user-header">
+        <h3>ЧИТАТЕЛИ БЛОГА ({{ users.count }})</h3>
+    </div>
+    <div class="user-grid">
+        {% for user in users %}
+            {% if not user.is_superuser and user.photo %}
+              <div class="user-grid-item">
+                  <a href="{% url 'profile_pk' user.username %}">
+                      <img src="{{user.photo.url}}">
+                  </a>
+              </div>
+            {% endif %}
+        {% empty %}
+            <li>Пользователей не найдено.</li>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

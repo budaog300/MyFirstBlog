@@ -1,0 +1,88 @@
+{% extends 'shopapp/article.html' %}
+
+{% block title %}
+    Результаты поиска
+{% endblock %}
+
+{% block right_content %}
+    {% if error %}
+        <p>{{ error }}</p>
+    {% else %}
+    <div class="posts">
+        <div class="header-article">
+            <h3>Результаты поиска для: "{{ query }}"</h3>
+        </div>
+        <ul>
+            {% for p in page_obj %}
+            {% if p.is_published %}
+                <li class="post" onclick="location.href='{{ p.get_absolute_url }}?page={{ page_number }}{% if request.GET.query %}&query={{ query }}{% endif %}'">
+                    {% if p.photo %}
+                        <p><img class="img-article-left" src="{{p.photo.url}}"></p>
+                    {% endif %}
+                    <div class="post-info">
+                        <h3>{{p.title}}</h3>
+                        <div>{{ p.preview }}</div>
+                        <h5>Дата публикации: {{p.time_create}}</h5>
+                    </div>
+                </li>
+            {% endif %}
+            {% endfor %}
+        </ul>
+    </div>
+    <div class="paginator">
+     {% if page_obj.has_other_pages %}
+         <nav class="pagination-nav">
+            {% if page_obj.has_previous %}
+                <li class="page-num">
+                    <a href="?page={{ page_obj.previous_page_number }}&query={{ query }}">
+                        <span class="pagination-arrow pagination-arrow-left">&lt;</span>
+                    </a>
+                </li>
+             {% else %}
+                <span class="pagination-arrow pagination-arrow-left disabled">&lt;</span>
+            {% endif %}
+              {% if page_obj.number > 1 %}
+                <li class="page-num">
+                    <a href="?page=1&query={{ query }}">1</a>
+                </li>
+                {% if page_obj.number > 2 %}
+                    <li class="page-num">...</li>
+                {% endif %}
+            {% endif %}
+           <ul class="pagination-numbers">
+                {% for p in page_obj.paginator.page_range %}
+                        {% if page_obj.number == p %}
+                <li class="page-num page-num-selected">{{ p }}</li>
+                        {% elif p >= page_obj.number|add:-1 and p <= page_obj.number|add:1 and p != 1 and p != page_obj.paginator.num_pages %}
+                <li class="page-num">
+                    <a href="?page={{ p }}&query={{ query }}">{{ p }}</a>
+                </li>
+                        {% endif %}
+                {% endfor %}
+            </ul>
+            {% if page_obj.number < page_obj.paginator.num_pages %}
+                {% if page_obj.number < page_obj.paginator.num_pages|add:-1 %}
+                    <li class="page-num">...</li>
+                {% endif %}
+                <li class="page-num">
+                    <a href="?page={{ page_obj.paginator.num_pages }}&query={{ query }}">{{ page_obj.paginator.num_pages }}</a>
+                </li>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <li class="page-num">
+                    <a href="?page={{ page_obj.next_page_number }}&query={{ query }}">
+                        <span class="pagination-arrow pagination-arrow-right">&gt;</span>
+                    </a></a>
+                </li>
+            {% else %}
+                <span class="pagination-arrow pagination-arrow-right disabled">&gt;</span>
+            {% endif %}
+        </nav>
+        {% endif %}
+     </div>
+     {% endif %}
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    О нас
+{% endblock %}
+
+{% block extra_css %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shopapp/css/about.css' %}">
+{% endblock %}
+
+{% block header %}
+    <header>
+        <h1>Об авторе</h1>
+    </header>
+{% endblock %}
+
+{% block content %}
+<div class="full-about">
+    <div class="author-box">
+        <div class="author-info">
+            <h2>Всем привет!!!</h2>
+            <div class="profile-photo">
+                <img src="{% static 'shopapp/img/me.jpg' %}" style="width: 200px; height: 200px;">
+            </div>
+            <div class="profile-preview">
+                <h3>Данила Кириллов</h3>
+                <p>Ульяновский Государственный Технический Университет</p>
+            </div>
+        </div>
+        <div class="author-detail">
+            <div class="profile-content">
+                <h2>Немного обо мне</h2>
+                <p class="base-info">
+                    Я, Кириллов Данила Александрович, родился и проживаю в городе Ульяновске.
+                    Обучаюсь в Ульяновском Государственном Техническом Университете (УлГТУ) на направлении
+                    Информатика и Вычислительная Техника (ИВТ) на 4 курсе. Этот сайт является моим первым полноценным проектом,
+                    созданным при использовании фреймворка Django. Здесь я применил все базовые вещи, которые нужно знать при
+                    начале работы с этим фреймворком, ознакомился с файловой структурой, за что каждый файл отвечает, ознакомился с базовыми
+                    функциями и классами. Идея сайта - содержание огромного количества статей на разную тематику.
+                </p>
+            </div>
+            <div class="profile-content">
+                <h2>Я в социальных сетях</h2>
+                <a href="#"><i class="fa fa-github" aria-hidden="true"></i></a>
+                <a href="https://t.me/kashka500"><i class="fa fa-telegram" aria-hidden="true"></i></a>
+                <a href="https://vk.com/guapsir"><i class="fa fa-vk" aria-hidden="true"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

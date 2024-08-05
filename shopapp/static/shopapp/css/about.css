@@ -1,0 +1,61 @@
+.full-about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.author-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 800px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);/
+}
+
+.profile-photo {
+    position: relative;
+    display: inline-block;
+}
+
+.profile-photo img {
+    border-radius: 50%;
+    border: 6px solid #525252;
+    padding: 2px;
+    background: #f0f0f0;
+    box-shadow: inset 0 0 0 4px #fff;
+}
+
+.author-info, .author-detail {
+    margin-bottom: 20px;
+}
+
+.author-info h2, .author-detail h2 {
+    padding: 10px;
+    margin: 0;
+}
+
+.author-info p, .author-detail p {
+    margin-bottom: 10px;
+}
+
+.author-detail a {
+    margin: 0 10px;
+    color: #333;
+    font-size: 24px;
+    text-decoration: none;
+}
+
+.author-detail a:hover {
+    color: #007bff;
+}
+
+.base-info {
+    text-align: left;
+    padding: 20px;
+    margin: 0;
+}

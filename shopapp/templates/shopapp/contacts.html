@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Связь с нами
+{% endblock %}
+
+{% block extra_css %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shopapp/css/contacts.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'shopapp/js/contacts.js' %}"></script>
+{% endblock %}
+
+{% block header %}
+    <header>
+        <h1>Связь с нами</h1>
+    </header>
+{% endblock %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+        <div class="contact-container">
+            <h2 class="contact-heading">Свяжитесь с нами</h2>
+            <p class="contact-intro">Если у вас есть вопросы, комментарии или предложения, пожалуйста, отправьте нам сообщение. Мы обязательно свяжемся с вами!</p>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <img src="{% static 'shopapp/img/town.jpg' %}" alt="Контактная информация" class="contact-image">
+                </div>
+                <div class="contact-form">
+                    {% if messages %}
+                        <div class="messages">
+                            {% for message in messages %}
+                                <div class="alert alert-{{ message.tags }}" id="message-{{ forloop.counter }}">
+                                    {{ message }}
+                                    <button type="button" class="close" onclick="hideMessage('message-{{ forloop.counter }}')">&times;</button>
+                                </div>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                    <form method="post" class="form">
+                        {% csrf_token %}
+                        <label for="{{ form.first_name.id_for_label }}">Имя*</label>
+                        <input type="text" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.name }}" placeholder="Ваше имя.." required>
+
+                        <label for="{{ form.last_name.id_for_label }}">Фамилия*</label>
+                        <input type="text" id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.name }}" placeholder="Ваша фамилия.." required>
+
+                        <label for="{{ form.email.id_for_label }}">E-Mail*</label>
+                        <input type="email" id="{{ form.email.id_for_label }}" name="{{ form.email.name }}" placeholder="Электронная почта.." required>
+
+                        <label for="{{ form.message.id_for_label }}">Сообщение*</label>
+                        <textarea id="{{ form.message.id_for_label }}" name="{{ form.message.name }}" placeholder="Введите текст сообщения..." style="height:170px" required></textarea>
+
+                        <button type="submit" class="submit-btn">Отправить сообщение</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <p>Для отправки сообщения вам нужно войти в систему!</p>
+        <a href="{% url 'login' %}?next={{request.path}}">Войти</a>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,45 @@
+<li class="list-group-item comment-item">
+    <strong>
+        {% if comment.user %}
+             <div class="comment-profile">
+                {% if comment.user.photo %}
+                    <a href="{% url 'profile_pk' comment.user.username %}">
+                        <img src="{{comment.user.photo.url}}" alt="User Photo" style="height: 30px; width: 30px;">
+                    </a>
+                {% endif %}
+                <p style="padding: 5px;">{{ comment.user.username }} ответил: {{ comment.parent.user.username }}'у</p>
+             </div>
+            <p><small class="text-muted">{{ comment.time_create }}</small></p>
+        {% else %}
+            <p>Пользователь удален <small class="text-muted">{{ comment.time_create }}</small></p>
+        {% endif %}
+    </strong>
+    <p>{{ comment.message|linebreaks }}</p>
+
+    <!-- Кнопка для показа формы ответа -->
+    {% if user.is_authenticated %}
+        <button class="btn btn-secondary reply-btn" data-target="#reply-form-{{ comment.id }}">
+            Ответить
+        </button>
+    {% endif %}
+
+    <!-- Форма для ответа, скрытая по умолчанию -->
+    <div id="reply-form-{{ comment.id }}" class="reply-form-container" style="display: none;">
+        <form method="POST" class="reply-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="hidden" name="parent_id" value="{{ comment.id }}">
+            <button type="submit" class="btn btn-primary">Отправить ответ</button>
+        </form>
+    </div>
+
+    <!-- Рекурсивное отображение ответов -->
+    {% if comment.replies.all %}
+        <button class="btn show-replies" onclick="show_replies({{ comment.id }})" >Показать все ({{comment.replies.count}})</button>
+        <ul class="list-group" id="replies-{{ comment.id }}" style="display: none;">
+            {% for reply in comment.replies.all %}
+                {% include 'shopapp/comment_item.html' with comment=reply %}
+            {% endfor %}
+        </ul>
+    {% endif %}
+</li>
