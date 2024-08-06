@@ -273,6 +273,7 @@ def search_results_view(request):
                 'cats': cats,
                 'query': query,
                 'cat_id': cat_id,
+                'popular_posts': get_popular_posts(),
                 'error': error
             }
             return render(request, 'shopapp/includes/search_results.html', context)

@@ -1,8 +1,15 @@
 {% extends 'base.html' %}
 
+{% block title %}
+    Вы вышли из аккаунта!
+{% endblock %}
+
 {% block extra_css %}
     {% load static %}
     <link rel="stylesheet" type="text/css" href="{% static 'shopapp/css/logged_out.css' %}">
+{% endblock %}
+
+{% block toppanel %}
 {% endblock %}
 
 {% block content %}
