@@ -1,12 +1,3 @@
-/* Общие стили */
-* {
-    box-sizing: border-box;
-}
-
-body {
-    font-family: Arial, sans-serif;
-}
-
 /* Контейнер для контактной формы */
 .contact-container {
     max-width: 900px;
@@ -60,7 +51,7 @@ body {
 }
 
 input[type=text], input[type=email], textarea {
-    width: 100%;
+    width: calc(100% - 24px); /* Ширина с учетом отступов */
     padding: 12px;
     border: 1px solid #ddd;
     border-radius: 4px;
@@ -69,6 +60,7 @@ input[type=text], input[type=email], textarea {
 }
 
 textarea {
+    height: 170px;
     resize: vertical;
 }
 
