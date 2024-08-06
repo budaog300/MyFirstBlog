@@ -20,6 +20,13 @@
         {% include 'shopapp/includes/form_search.html' %}
     </header>
     <ul class="category-panel">
+        <li>
+            <p class="link-read-post">
+                <button class="btn category-btn">
+                    <a href="{% url 'all_posts' %}"><span>Все статьи</span></a>
+                </button>
+            </p>
+        </li>
         {% for c in cats %}
         <li>
             <p class="link-read-post">
@@ -39,6 +46,33 @@
             <td valign="top" class="right-content">
                 <div class="post-content">
                     {% block right_content %}
+                        <div class="header-article">
+                            <h3>ВСЕ СТАТЬИ</h3>
+                        </div>
+                        <div class="posts">
+                            {% if query %}
+                                {% include 'shopapp/includes/search_results.html' %}
+                            {% else %}
+                            <ul>
+                                {% for p in page_obj %}
+                                {% if p.is_published %}
+                                    <li class="post" onclick="location.href='{{ p.get_absolute_url }}?page={{ page_number }}'">
+                                        {% if p.photo %}
+                                            <p><img class="img-article-left" src="{{p.photo.url}}" alt=""></p>
+                                        {% endif %}
+                                        <div class="post-info">
+                                            <h3>{{p.title}}</h3>
+                                            <h5>Дата публикации: {{p.time_create}}</h5>
+                                            <div>{{ p.preview }}</div>
+                                        </div>
+                                    </li>
+                                {% endif %}
+                                {% endfor %}
+                            </ul>
+                            {% endif %}
+                        </div>
+                        <!-- Пагинация -->
+                        {% include 'shopapp/includes/paginator.html' %}
                     {% endblock %}
                 </div>
             </td>

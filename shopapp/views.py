@@ -155,6 +155,7 @@ def index(request):
         'users': users,
         'posts': posts,
         'cats': cats,
+        'page_obj': paginate(request, posts, 3),
         'popular_posts': get_popular_posts(),
         'page_number': page_number,
     }
@@ -249,6 +250,24 @@ def show_category(request, cat_id):
         'popular_posts': get_popular_posts(),
     }
     return render(request, 'shopapp/category.html', context)
+
+
+def all_posts(request):
+    users = CustomUser.objects.all()
+    query = request.GET.get('query')
+    posts = Women.objects.filter(is_published=True)
+    cats = Category.objects.all()
+    page_number = request.GET.get('page')
+    context = {
+        'users': users,
+        'posts': posts,
+        'cats': cats,
+        'page_obj': paginate(request, posts, 3),
+        'page_number': page_number,
+        'query': query,
+        'popular_posts': get_popular_posts(),
+    }
+    return render(request, 'shopapp/includes/all_posts.html', context)
 
 
 def search_results_view(request):
