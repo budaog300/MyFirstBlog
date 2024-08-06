@@ -6,11 +6,14 @@
 
 {% block extra_css %}
     {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static 'shopapp/css/registr.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'shopapp/css/login.css' %}">
 {% endblock %}
 
 {% block extra_js %}
     <script src="{% static 'shopapp/js/login.js' %}"></script>
+{% endblock %}
+
+{% block toppanel %}
 {% endblock %}
 
 {% block content %}
@@ -29,16 +32,25 @@
         {% csrf_token %}
           <div class="form-group">
             <label for="{{ form.username.id_for_label }}">Имя пользователя</label>
-            <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" placeholder="Email или Логин" required/>
+            <div class="input-container">
+                <i class="fa fa-user icon"></i>
+                <input type="text" id="{{ form.username.id_for_label }}" name="{{ form.username.name }}" placeholder="Email или Логин" required/>
+            </div>
           </div>
           <div class="form-group">
             <label for="{{ form.password.id_for_label }}">Пароль</label>
-            <input type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" placeholder="Пароль" required/>
-            <input type="checkbox" onclick="myFunction('{{ form.password.id_for_label }}')">Показать пароль
+            <div class="input-container">
+                <i class="fa fa-key icon"></i>
+                <input type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" placeholder="Пароль" required/>
+            </div>
+            <small>Показать пароль<input type="checkbox" onclick="myFunction('{{ form.password.id_for_label }}')"></small>
           </div>
             <div class="form-group">
                 <button type="submit">Войти</button>
             </div>
+            {% if error %}
+                <p class="error-message">{{ error }}</p>
+            {% endif %}
           <input type="hidden" name="next" value="{{ next }}" />
             <small class="form-group">
                  <div class="form-check form-switch">
@@ -46,13 +58,13 @@
                         <input class="form-check-input" id="rememberMe" type="checkbox" name="rememberMe"/>
                     </label>
                     <div class="spacer"></div>
-                    {% if error %}
-                        <p>{{ error }}</p>
-                    {% endif %}
                     <p><a href="{% url 'password_reset' %}">Забыли пароль?</a></p>
                  </div>
                 <p>Еще нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a></p>
             </small>
       </form>
   </div>
+{% endblock %}
+
+{% block footer %}
 {% endblock %}

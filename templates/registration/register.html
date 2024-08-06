@@ -9,6 +9,9 @@
     <link rel="stylesheet" type="text/css" href="{% static 'shopapp/css/registr.css' %}">
 {% endblock %}
 
+{% block toppanel %}
+{% endblock %}
+
 {% block content %}
 <body>
     <div class="container">
@@ -52,7 +55,7 @@
                      <input type="password" id="{{ form.password2.id_for_label }}" name="{{ form.password2.name }}" placeholder="Подтверждение пароля"  required>
                 </div>
                 {% for error in form.password2.errors %}
-                    <p class="error-message">{{error}}</p>
+                    <small class="error-message">{{error}}</small>
                 {% endfor %}
             </div>
             <div class="form-group">
@@ -75,4 +78,7 @@
         </form>
     </div>
 </body>
+{% endblock %}
+
+{% block footer %}
 {% endblock %}

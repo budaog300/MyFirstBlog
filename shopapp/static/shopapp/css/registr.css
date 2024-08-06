@@ -1,72 +1,104 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f7f7f7;
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    font-family: 'Arial', sans-serif;
+    color: #fff;
+    margin: 0;
+    padding: 0;
 }
+
 .container {
-    max-width: 400px;
-    margin: 0 auto;
-    margin-top: 15px;
+    max-width: 500px;
+    margin: 80px auto;
     padding: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    color: #333;
 }
 
 h2 {
+    margin-top: 0;
+    color: #333;
     text-align: center;
+    font-size: 28px;
+    font-weight: 600;
 }
+
 .form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    position: relative;
 }
+
 .form-group label {
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #333;
 }
-.form-group input {
-    width: calc(100% - 20px);
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+
+.input-container {
+    position: relative;
 }
-.form-group button {
+
+.input-container i.icon {
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    transform: translateY(-50%);
+    color: #007bff;
+}
+
+.input-container input[type=text],
+.input-container input[type=email],
+.input-container input[type=password] {
     width: 100%;
-    padding: 10px;
-    background-color: #4CAF50;
+    padding: 12px 12px 12px 40px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.input-container input[type=text]::placeholder,
+.input-container input[type=email]::placeholder,
+.input-container input[type=password]::placeholder {
+    color: #aaa;
+}
+
+.error-message {
+    color: #dc3545;
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
     border: none;
-    color: white;
+    border-radius: 5px;
+    background: #007bff;
+    color: #fff;
     font-size: 16px;
     cursor: pointer;
-    border-radius: 4px;
+    transition: background 0.3s ease;
 }
-.form-group button:hover {
-    background-color: #45a049;
+
+button:hover {
+    background: #0056b3;
 }
-.form-group p {
+
+small {
+    display: block;
     text-align: center;
+    margin-top: 20px;
+    color: #333;
 }
 
-/* Стиль формы иконки */
-.icon {
-  padding: 10px;
-  background: dodgerblue;
-  color: white;
-  min-width: 50px;
-  text-align: center;
+a {
+    color: #007bff;
+    text-decoration: none;
 }
 
-.form-check {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.form-check-label {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-
-}
-
-.spacer {
-    flex-grow: 1;  /* Расстояние между юзер панелью и остальной частью */
+a:hover {
+    text-decoration: underline;
 }
