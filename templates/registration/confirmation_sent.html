@@ -1,2 +1,19 @@
-<h2>Подтверждение регистрации</h2>
-<p>Ссылка для подтверждения регистрации была отправлена на вашу почту {{ email }}. Проверьте ваш email для активации аккаунта.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shopapp/css/active_email.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Подтверждение регистрации</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Подтверждение регистрации</h2>
+        <p>Ссылка для подтверждения регистрации была отправлена на вашу почту
+            <a href="mailto:{{ user.email }}">{{ user.email }}</a>.
+            Проверьте ваш email для активации аккаунта.
+        </p>
+    </div>
+</body>
+</html>

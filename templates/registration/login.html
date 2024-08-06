@@ -43,7 +43,7 @@
                 <i class="fa fa-key icon"></i>
                 <input type="password" id="{{ form.password.id_for_label }}" name="{{ form.password.name }}" placeholder="Пароль" required/>
             </div>
-            <small>Показать пароль<input type="checkbox" onclick="myFunction('{{ form.password.id_for_label }}')"></small>
+            <small class="show-password">Показать пароль<input type="checkbox" onclick="myFunction('{{ form.password.id_for_label }}')"></small>
           </div>
             <div class="form-group">
                 <button type="submit">Войти</button>

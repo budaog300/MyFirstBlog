@@ -83,9 +83,8 @@ button:hover {
     background: #0056b3;
 }
 
-.small {
+.show-password {
     display: block;
-    text-align: center;
     margin-top: 20px;
     color: #333;
 }

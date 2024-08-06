@@ -1,3 +1,17 @@
-<h2>Недействительная активация</h2>
-<p>Ссылка для активации недействительна или истекла. Пожалуйста, попробуйте зарегистрироваться снова.</p>
-<p><a href="{% url 'register' %}">Зарегистрироваться</a></p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shopapp/css/active_email.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Недействительная активация</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Недействительная активация</h2>
+        <p>Ссылка для активации недействительна или истекла. Пожалуйста, попробуйте зарегистрироваться снова.</p>
+        <p><a href="{% url 'register' %}">Зарегистрироваться</a></p>
+    </div>
+</body>
+</html>

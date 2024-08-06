@@ -107,7 +107,10 @@ def register(request):
             from_email = 'kirillovdanila5@gmail.com'
             recipient_list = [user.email]
             send_mail(subject, message, from_email, recipient_list)
-            return render(request, 'registration/confirmation_sent.html')
+            context = {
+                'user': user
+            }
+            return render(request, 'registration/confirmation_sent.html', context)
         else:
             errors = form.errors
             return render(request, 'registration/register.html', {'form': form, 'errors': errors})
@@ -121,13 +124,13 @@ def activate(request, uidb64, token):
     try:
         uid = force_str(urlsafe_base64_decode(uidb64))
         user = CustomUser.objects.get(pk=uid)
-    except(TypeError, ValueError, OverflowError, User.DoesNotExist):
+    except(TypeError, ValueError, OverflowError, CustomUser.DoesNotExist):
         user = None
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
         login(request, user, backend='shopapp.backends.UserModelBackend')
-        return redirect('profile')
+        return redirect('profile_pk', username=request.user.username)
     else:
         return render(request, 'registration/activation_invalid.html')
 
