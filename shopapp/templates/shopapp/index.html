@@ -1,18 +1,54 @@
 {% extends 'base.html' %}
 
 {% block title %}
-    Главная страница
+    Статьи
+{% endblock %}
+
+{% block extra_css %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shopapp/css/index.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'shopapp/js/index.js' %}"></script>
+    <script src="{% static 'shopapp/js/post.js' %}"></script>
 {% endblock %}
 
 {% block header %}
     <header>
-        <h1>Мой Блог</h1>
+        <h1>Отображение категорий</h1>
+        {% include 'shopapp/includes/form_search.html' %}
     </header>
+    <ul class="category-panel">
+        {% for c in cats %}
+        <li>
+            <p class="link-read-post">
+                <button class="btn category-btn">
+                    <a href="{{ c.get_absolute_url }}"><span>{{ c.name }}</span></a>
+                </button>
+            </p>
+        </li>
+        {% endfor %}
+    </ul>
 {% endblock %}
 
 {% block content %}
-
-
+<table class="table-content">
+    <tbody>
+        <tr>
+            <td valign="top" class="right-content">
+                <div class="post-content">
+                    {% block right_content %}
+                    {% endblock %}
+                </div>
+            </td>
+            <td valign="top" class="right-chapters">
+                {% block right-chapters %}
+                {% include 'shopapp/includes/popular_posts.html' %}
+                {% endblock %}
+            </td>
+        </tr>
+    </tbody>
+</table>
 {% endblock %}
-
 

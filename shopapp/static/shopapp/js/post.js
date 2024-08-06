@@ -26,8 +26,6 @@ function show_replies(id) {
         replies.style.display = 'none';
     }
 }
-
-
 /* -------------------------------------------------------------------- */
 
 

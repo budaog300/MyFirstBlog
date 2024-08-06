@@ -144,9 +144,19 @@ def logout_view(request, next_page=None):
 
 
 def index(request):
-    """ Главная страница """
+    """ Страница статей """
+    posts = Women.objects.all()
+    cats = Category.objects.all()
+    users = CustomUser.objects.all()
+    page_number = request.GET.get('page')
+    if len(cats) == 0:
+        raise Http404()
     context = {
-
+        'users': users,
+        'posts': posts,
+        'cats': cats,
+        'popular_posts': get_popular_posts(),
+        'page_number': page_number,
     }
     return render(request, 'shopapp/index.html', context)
 
@@ -180,7 +190,6 @@ def update_profile(request):
 
 def about(request):
     """ Страница "О нас" """
-
     context = {
 
     }
@@ -216,24 +225,6 @@ def contacts(request):
     else:
         form = ContactMessageForm()
     return render(request, 'shopapp/contacts.html', {'form': form})
-
-
-def article(request):
-    """ Страница статей """
-    posts = Women.objects.all()
-    cats = Category.objects.all()
-    users = CustomUser.objects.all()
-    page_number = request.GET.get('page')
-    if len(cats) == 0:
-        raise Http404()
-    context = {
-        'users': users,
-        'posts': posts,
-        'cats': cats,
-        'popular_posts': get_popular_posts(),
-        'page_number': page_number,
-    }
-    return render(request, 'shopapp/article.html', context)
 
 
 def show_category(request, cat_id):

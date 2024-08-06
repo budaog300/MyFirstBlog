@@ -15,20 +15,16 @@
     {% endfor %}
     </ul>-->
     <ul class="menu">
-        <!-- Возврат на предыдущую страницу
-        <p><a href="{{request.META.HTTP_REFERER|escape}}">Back</a></p>-->
-
 <!--        {% if request.resolver_match.url_name != 'index' %}-->
 <!--            <li><a href="{{ request.META.HTTP_REFERER|escape }}">&lt;</a></li>-->
 <!--        {% endif %}-->
-        <li><a href="{% url 'index' %}"><i class="fa fa-home"></i> Главная</a></li>
-        <li><a href="{% url 'article' %}"><i class="fa fa-globe"></i> Статьи</a></li>
+        <li><a href="{% url 'index' %}"><i class="fa fa-globe"></i> Статьи</a></li>
         <li><a href="{% url 'about' %}"><i class="fa fa-fw fa-wrench"></i> Об авторе</a></li>
         <li><a href="{% url 'contacts' %}"><i class="fa fa-fw fa-envelope"></i> Связь с нами</a></li>
 <!--        <li><a href="{% url 'test' %}">Тестовая страница</a></li>-->
 
         <div class="spacer"></div>
-        <li>Текущее время: <span id="current-time"></span></li>
+        <li><span id="current-time"></span></li>
         {% if request.user.is_superuser %}
             <li><a href="{% url 'admin:index' %}">Админ панель</a></li>
         {% endif %}
