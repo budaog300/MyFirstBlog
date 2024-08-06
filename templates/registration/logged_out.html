@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 
-{% block content %}
-  <p>Вы вышли из аккаунта!</p>
+{% block extra_css %}
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'shopapp/css/logged_out.css' %}">
+{% endblock %}
 
-  <a href="{% url 'login' %}">Нажмите, чтобы войти заново</a>
+{% block content %}
+  <div class="container">
+    <p>Вы вышли из аккаунта!</p>
+    <a href="{% url 'login' %}" class="login-link">Нажмите, чтобы войти заново</a>
+  </div>
 {% endblock %}
