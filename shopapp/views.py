@@ -238,7 +238,7 @@ def show_category(request, cat_id):
     page_number = request.GET.get('page')
     if len(posts) == 0:
         raise Http404()
-    context = {
+    context = { 
         'users': users,
         'posts': posts,
         'cats': cats,
